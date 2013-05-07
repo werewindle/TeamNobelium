@@ -1,41 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
-// ej tuka sha me spomenavate s dobro. dobre che ne ma znajte koj sym, che ne byagam mnogo byrzo... ama na CS sha va spukaaaaaaaaaam.
+// ej tuka sha me spomenavate s dobro. dobre che ne ma znajte koj sym, che ne byagam mnogo byrzo... ama na CS sha va spukaaaaaaaaaam.sdf 
 class Hangman
 {
-    static string[] someWords = { 
-                                "computer",
-                                "programmer",
-                                "software",
-                                "debugger", 
-                                "compiler", 
-                                "developer", 
-                                "algorithm", 
-                                "array", 
-                                "method",
-                                "variable"
-                                };
-    public const string START_MESSAGE = "Welcome to “Hangman” game. Please try to guess my secret word. \n" + 
-        "Use 'top' to view the top scoreboard, 'restart' to start a new game, 'help' \nto cheat and 'exit' " +
-        "to quit the game.";
+    static string[] someWords =
+    {
+        "computer",
+        "programmer",
+        "software",
+        "debugger",
+        "compiler",
+        "developer",
+        "algorithm",
+        "array",
+        "method",
+        "variable"
+    };
+    public const string START_MESSAGE = "Welcome to “Hangman” game. Please try to guess my secret word. \n" +
+                                        "Use 'top' to view the top scoreboard, 'restart' to start a new game, 'help' \nto cheat and 'exit' " +
+                                        "to quit the game.";
     public static bool isCheated = false;
     public static bool isRestartRequested = false;
-
-
-
-
     public static int mistakeCounter = 0;
     public static string theChosenWord;
     public static char[] unknownWord;
-    public static Dictionary<string, int> score; 
+    public static Dictionary<string, int> score;
 
     static void Main()
     {
         score = new Dictionary<string, int>();
         do
-	    {
+        {
             gen();
             Console.WriteLine(START_MESSAGE);
             isCheated = false;
@@ -48,28 +44,23 @@ class Hangman
                 GetCommand(enteredString);
                 if (isRestartRequested)
                 {
-
-
-
                     break;
                 }
-            
-            } while (!IsWordKnown());
+            }
+            while (!IsWordKnown());
             if (isRestartRequested)
             {
                 isRestartRequested = false;
                 Console.WriteLine();
                 continue;
             }
+
             if (!isCheated)
             {
                 Console.WriteLine("You won with {0} mistakes.", mistakeCounter);
                 PrintTheWord();
                 Console.Write("Please enter your name for the top scoreboard: ");
                 AddInScoreboard(score);
-
-
-
                 printboard(score);
             }
             else
@@ -78,9 +69,8 @@ class Hangman
                 Console.WriteLine("to enter into the scoreboard.");
                 PrintTheWord();
             }
-            
-	    } while (true);
-        
+        }
+        while (true);
     }
 
     static void GetCommand(string command)
@@ -93,12 +83,9 @@ class Hangman
             case "restart":
                 isRestartRequested = true;
                 break;
-
             case "help":
                 isCheated = true;
-                Help(); 
-
-
+                Help();
                 break;
             case "exit":
                 Console.WriteLine("Good bye!");
@@ -119,6 +106,7 @@ class Hangman
                             isLetterInTheWord = true;
                         }
                     }
+
                     if (isLetterInTheWord)
                     {
                         Console.WriteLine("Good job! You revealed {0} letters.", letterKnown);
@@ -140,7 +128,7 @@ class Hangman
     static bool check(string enteredString)
     {
         char enteredSymbol;
-        if ((char.TryParse(enteredString, out enteredSymbol)) && 
+        if ((char.TryParse(enteredString, out enteredSymbol)) &&
             ((int)enteredSymbol >= 97 && (int)enteredSymbol <= 122))
         {
             return true;
@@ -187,47 +175,51 @@ class Hangman
         string name = string.Empty;
         bool hasDouble = false;
         do
-	    {
+        {
             hasDouble = false;
             name = Console.ReadLine();
-	        foreach (var item in score)
-	        {
-		        if (item.Key == name)
-	            {
+            foreach (var item in score)
+            {
+                if (item.Key == name)
+                {
                     Console.Write("This name already exists in the Scoreboard! Type another: ");
-		            hasDouble = true;
+                    hasDouble = true;
                     //podari fakta che Dictionary-to ne e Multi (Wintellect Power Collections), ne moje da povarqme imena
-	            }
-	        } 
-	    } while (hasDouble);
-         score.Add(name, mistakeCounter);
-         mistakeCounter = 0;
+                }
+            }
+        }
+        while (hasDouble);
+        score.Add(name, mistakeCounter);
+        mistakeCounter = 0;
     }
 
-    static void printboard(Dictionary<string, int> score) 
+    static void printboard(Dictionary<string, int> score)
     {
         if (score.Count == 0)
         {
             Console.WriteLine("Empty Scoreboard!");
             return;
         }
+
         List<KeyValuePair<string, int>> key = new List<KeyValuePair<string, int>>();
         foreach (var item in score)
         {
             KeyValuePair<string, int> current = new KeyValuePair<string, int>(item.Key, item.Value);
             key.Add(current);
         }
+
         key.Sort(new OutComparer());
         Console.WriteLine("Scoreboard:");
         for (int i = 0; i < score.Count; i++)
         {
-            Console.WriteLine("{0}. {1} --> {2} mistake", i + 1 , key[i].Key, key[i].Value);
+            Console.WriteLine("{0}. {1} --> {2} mistake", i + 1, key[i].Key, key[i].Value);
             if (i == 4)
             {
                 //Ima izlishak ot informacia, pokazvame samo parvite 5, no pazim vsichki (izlishno moje bi)
                 break;
             }
         }
+
         Console.WriteLine();
     }
 
