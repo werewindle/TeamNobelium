@@ -98,7 +98,7 @@ namespace HangmanGame
         public string GetCommand(string command)
         {
             string output = "";
-            
+            Scoreboard currectScore = new Scoreboard();
             switch (command)
             {
                 case "top":
@@ -112,24 +112,28 @@ namespace HangmanGame
                     Help();
                     break;
                 case "exit":
-                    Console.WriteLine("Good bye!");
-                    Environment.Exit(1);
+                    HangmanUserInterface.EndMessage();
+                    Environment.Exit(1); // Check how to fix this
                     break;
                 default:
-                    bool isOneSymbol = (command.Length == 1);
-                    
-                    if (isOneSymbol && char.IsLetter(command, 0))
-                    {
-                        
-                        ProcessLetter(command);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Incorrect guess or command!");
-                    }
+                    CheckCommandOrLetter(command);
                     break;
             }
             return command;
+        }
+  
+        private void CheckCommandOrLetter(string command)
+        {
+            bool isOneSymbol = (command.Length == 1);
+                      
+            if (isOneSymbol && char.IsLetter(command, 0))
+            {
+                ProcessLetter(command);
+            }
+            else
+            {
+                HangmanUserInterface.IncorrectCommandMessage();
+            }
         }
 
         static bool CheckIsLetter(string enteredString)
