@@ -33,7 +33,7 @@ namespace HangmanGame
                 secretWord[i] = '_';
             }
 
-            return theChosenWord;
+            return secretWord.ToString();
         }
     }   
 }
