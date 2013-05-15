@@ -11,6 +11,20 @@ namespace HangmanGame
 
         private List<PersonInScoreboard> players;
 
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+            result.Append("Scoreboard:");
+            result.Append(Environment.NewLine);
+            for (int i = 0; i < this.Players.Count ; i++)
+            {
+                result.AppendFormat("{0}. {1} --> {2} mistake", i + 1, Players[i].Name, Players[i].MistakeNumber);
+                result.Append(Environment.NewLine);
+            }
+
+            return result.ToString();
+        }
+
         public List<PersonInScoreboard> Players
         {
             get

@@ -7,22 +7,7 @@ namespace HangmanGame
 {
     class GameEngine
     {
-        static string[] someWords = { 
-                                "computer",
-                                "programmer",
-                                "software",
-                                "debugger", 
-                                "compiler", 
-                                "developer", 
-                                "algorithm", 
-                                "array", 
-                                "method",
-                                "variable"
-                                };
-
-        public const string START_MESSAGE = "Welcome to “Hangman” game. Please try to guess my secret word. \n" +
-            "Use 'top' to view the top scoreboard, 'restart' to start a new game, 'help' \nto cheat and 'exit' " +
-            "to quit the game.";
+        
         private static bool isCheated = false;
         private static bool isRestartRequested = false;
 
@@ -32,18 +17,19 @@ namespace HangmanGame
         public static int mistakeCounter = 0;
         private static string theChosenWord;
         private static StringBuilder hiddenWord = new StringBuilder();
-        public static Dictionary<string, int> score;
+
+        Scoreboard scoreBoard = new Scoreboard();
 
         public void Run()
         {
-            score = new Dictionary<string, int>();
             do
             {
                 WordsRepository wordGenerator = new WordsRepository();
                 theChosenWord = wordGenerator.GenerateRandomWord();
                 hiddenWord.Append(wordGenerator.GenerateHiddenWord(theChosenWord));
 
-                Console.WriteLine(START_MESSAGE); // use UI and CR
+                ConsoleRender.PrintOnConsole(HangmanUserInterface.GetStartMessage());
+
                 isCheated = false;
                 mistakeCounter = 0;
 
@@ -66,19 +52,27 @@ namespace HangmanGame
             if (!isCheated)
             {
                 Console.WriteLine("You won with {0} mistakes.", mistakeCounter);
+
                 PrintTheWord();
-                Console.Write("Please enter your name for the top scoreboard: ");
-                AddInScoreboard(score);
-                printboard(score);
+
+                
+                scoreBoard.AddInScoreboard(RequestName(), mistakeCounter);
+                ConsoleRender.PrintOnConsole(scoreBoard.ToString());
             }
             else
             {
-                Console.WriteLine("You won with {0} mistakes but you have cheated. You are not allowed", mistakeCounter);
-                Console.WriteLine("to enter into the scoreboard.");
+                ConsoleRender.PrintOnConsole(HangmanUserInterface.WonWithCheatingMessage(mistakeCounter));
                 PrintTheWord();
             }
         }
-  
+
+        private string RequestName()
+        {
+            Console.Write("Please enter your name for the top scoreboard: ");
+            string name = Console.ReadLine();
+            return name;
+        }
+
         private void PlayCurrentWord()
         {
             do
@@ -95,14 +89,12 @@ namespace HangmanGame
             while (!IsWordKnown());
         }
 
-        public string GetCommand(string command)
+        public void GetCommand(string command)
         {
-            string output = "";
-            Scoreboard currectScore = new Scoreboard();
             switch (command)
             {
                 case "top":
-                    printboard(score);
+                    ConsoleRender.PrintOnConsole(scoreBoard.ToString());
                     break;
                 case "restart":
                     isRestartRequested = true;
@@ -112,14 +104,13 @@ namespace HangmanGame
                     Help();
                     break;
                 case "exit":
-                    HangmanUserInterface.EndMessage();
+                    ConsoleRender.PrintOnConsole(HangmanUserInterface.EndMessage());
                     Environment.Exit(1); // Check how to fix this
                     break;
                 default:
                     CheckCommandOrLetter(command);
                     break;
             }
-            return command;
         }
   
         private void CheckCommandOrLetter(string command)
@@ -132,7 +123,7 @@ namespace HangmanGame
             }
             else
             {
-                HangmanUserInterface.IncorrectCommandMessage();
+                ConsoleRender.PrintOnConsole(HangmanUserInterface.IncorrectCommandMessage());
             }
         }
 
