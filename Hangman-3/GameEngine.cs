@@ -102,9 +102,11 @@ namespace HangmanGame
                     Environment.Exit(1);
                     break;
                 default:
-                    bool isOneSymbol = command.Length != 1;
+                    bool isOneSymbol = (command.Length == 1);
+                    
                     if (isOneSymbol && char.IsLetter(command, 0))
                     {
+                        
                         ProcessLetter(command);
                     }
                     else

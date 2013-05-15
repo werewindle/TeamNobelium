@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleRender.cs" />
+    <Compile Include="GameEngine.cs" />
     <Compile Include="Hangman.cs" />
     <Compile Include="OutComparer.cs" />
     <Compile Include="PersonInScoreboard.cs" />
