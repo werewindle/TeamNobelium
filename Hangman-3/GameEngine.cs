@@ -43,48 +43,62 @@ namespace HangmanGame
                 theChosenWord = wordGenerator.GenerateRandomWord();
                 hiddenWord.Append(wordGenerator.GenerateHiddenWord(theChosenWord));
 
-                Console.WriteLine(START_MESSAGE);
+                Console.WriteLine(START_MESSAGE); // use UI and CR
                 isCheated = false;
                 mistakeCounter = 0;
-                do
-                {
-                    PrintTheWord();
-                    Console.Write("Enter your guess: ");
-                    string enteredString = Console.ReadLine();
-                    MyGetCommand(enteredString);
-                    if (isRestartRequested)
-                    {
-                        break;
-                    }
 
-                } while (!IsWordKnown());
+                PlayCurrentWord();
+
                 if (isRestartRequested)
                 {
                     isRestartRequested = false;
                     Console.WriteLine();
                     continue;
                 }
-                if (!isCheated)
-                {
-                    Console.WriteLine("You won with {0} mistakes.", mistakeCounter);
-                    PrintTheWord();
-                    Console.Write("Please enter your name for the top scoreboard: ");
-                    AddInScoreboard(score);
-                    printboard(score);
-                }
-                else
-                {
-                    Console.WriteLine("You won with {0} mistakes but you have cheated. You are not allowed", mistakeCounter);
-                    Console.WriteLine("to enter into the scoreboard.");
-                    PrintTheWord();
-                }
 
-            } while (true);
-
+                WordGuessed();
+            }
+            while (true);
+        }
+  
+        private void WordGuessed()
+        {
+            if (!isCheated)
+            {
+                Console.WriteLine("You won with {0} mistakes.", mistakeCounter);
+                PrintTheWord();
+                Console.Write("Please enter your name for the top scoreboard: ");
+                AddInScoreboard(score);
+                printboard(score);
+            }
+            else
+            {
+                Console.WriteLine("You won with {0} mistakes but you have cheated. You are not allowed", mistakeCounter);
+                Console.WriteLine("to enter into the scoreboard.");
+                PrintTheWord();
+            }
+        }
+  
+        private void PlayCurrentWord()
+        {
+            do
+            {
+                PrintTheWord();
+                Console.Write("Enter your guess: ");
+                string enteredString = Console.ReadLine();
+                GetCommand(enteredString);
+                if (isRestartRequested)
+                {
+                    break;
+                }
+            }
+            while (!IsWordKnown());
         }
 
-        static void MyGetCommand(string command)
+        public string GetCommand(string command)
         {
+            string output = "";
+            
             switch (command)
             {
                 case "top":
@@ -115,6 +129,7 @@ namespace HangmanGame
                     }
                     break;
             }
+            return command;
         }
 
         static bool CheckIsLetter(string enteredString)
