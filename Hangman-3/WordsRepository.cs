@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 
 namespace HangmanGame
 {
@@ -30,11 +31,13 @@ namespace HangmanGame
         public string GenerateHiddenWord(string secretWord)
         {
             int lengthOfTheWord = secretWord.Length;
+            StringBuilder output = new StringBuilder();
+            output.Append(secretWord);
             for (int i = 0; i < lengthOfTheWord; i++)
             {
-                secretWord[i] = '_';
+                output[i] = '_';
             }
-
+            secretWord = output.ToString();
             return secretWord.ToString();
         }
     }   
