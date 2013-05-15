@@ -189,16 +189,7 @@ namespace HangmanGame
             return result;
         }
 
-        static bool check(string enteredString)
-        {
-            char enteredSymbol;
-            if ((char.TryParse(enteredString, out enteredSymbol)) &&
-                ((int)enteredSymbol >= 97 && (int)enteredSymbol <= 122))
-            {
-                return true;
-            }
-            return false;
-        }
+        
 
         static void PrintTheWord()
         {
