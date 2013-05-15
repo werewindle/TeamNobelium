@@ -30,8 +30,8 @@ namespace HangmanGame
 
 
         public static int mistakeCounter = 0;
-        public static string theChosenWord;
-        public static char[] unknownWord;
+        private static string theChosenWord;
+        private static string hiddenWord;
         public static Dictionary<string, int> score;
 
         public void Run()
@@ -39,7 +39,10 @@ namespace HangmanGame
             score = new Dictionary<string, int>();
             do
             {
-                gen();
+                WordsRepository wordGenerator = new WordsRepository();
+                theChosenWord = wordGenerator.GenerateRandomWord();
+                hiddenWord = wordGenerator.GenerateHiddenWord(theChosenWord);
+
                 Console.WriteLine(START_MESSAGE);
                 isCheated = false;
                 mistakeCounter = 0;
@@ -139,11 +142,11 @@ namespace HangmanGame
             bool isLetterInTheWord = false;
             int letterKnown = 0;
             char enteredSymbol = char.Parse(letter);
-            for (int i = 0; i < unknownWord.Length; i++)
+            for (int i = 0; i < hiddenWord.Length; i++)
             {
                 if (theChosenWord[i] == enteredSymbol)
                 {
-                    unknownWord[i] = enteredSymbol;
+                    hiddenWord[i] = enteredSymbol;
                     letterKnown++;
                     isLetterInTheWord = true;
                 }
@@ -177,9 +180,9 @@ namespace HangmanGame
         static void PrintTheWord()
         {
             Console.Write("The secret word is: ");
-            for (int i = 0; i < unknownWord.Length; i++)
+            for (int i = 0; i < hiddenWord.Length; i++)
             {
-                Console.Write("{0} ", unknownWord[i]);
+                Console.Write("{0} ", hiddenWord[i]);
             }
             Console.WriteLine();
         }
@@ -189,18 +192,18 @@ namespace HangmanGame
             Random randomNumber = new Random();
             theChosenWord = someWords[randomNumber.Next(0, 10)];
             int lengthOfTheWord = theChosenWord.Length;
-            unknownWord = new char[lengthOfTheWord];
+            hiddenWord = new char[lengthOfTheWord];
             for (int i = 0; i < lengthOfTheWord; i++)
             {
-                unknownWord[i] = '_';
+                hiddenWord[i] = '_';
             }
         }
 
         static bool IsWordKnown()
         {
-            for (int i = 0; i < unknownWord.Length; i++)
+            for (int i = 0; i < hiddenWord.Length; i++)
             {
-                if (unknownWord[i] == '_')
+                if (hiddenWord[i] == '_')
                 {
                     return false;
                 }
@@ -260,11 +263,11 @@ namespace HangmanGame
         static void Help()
         {
             isCheated = true;
-            for (int i = 0; i < unknownWord.Length; i++)
+            for (int i = 0; i < hiddenWord.Length; i++)
             {
-                if (unknownWord[i] == '_')
+                if (hiddenWord[i] == '_')
                 {
-                    unknownWord[i] = theChosenWord[i];
+                    hiddenWord[i] = theChosenWord[i];
                     break;
                 }
             }
