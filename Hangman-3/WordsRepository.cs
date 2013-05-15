@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HangmanGame
 {
@@ -22,26 +20,22 @@ namespace HangmanGame
         };
 
         readonly Random randomWord = new Random();
-        public string ChosenWord {get; private set;}
-        public char[] SecretWord {get; private set;}
 
-
-        public WordsRepository(string chosenWord, char[] secretWord)
+        public string GenerateRandomWord()
         {
-            this.ChosenWord = chosenWord;
-            this.SecretWord = secretWord;
+            string randomlySelectedWord = wordsCollection[randomWord.Next(0, 10)];
+            return randomlySelectedWord;
         }
 
-        public string GenerateHiddenWord()
+        public string GenerateHiddenWord(string secretWord)
         {
-            ChosenWord = wordsCollection[randomWord.Next(0, 10)];
-            int lengthOfTheWord = ChosenWord.Length;
+            int lengthOfTheWord = secretWord.Length;
             for (int i = 0; i < lengthOfTheWord; i++)
             {
-                SecretWord[i] = '_';
+                secretWord[i] = '_';
             }
 
-            return SecretWord.ToString();
+            return secretWord.ToString();
         }
     }   
 }
