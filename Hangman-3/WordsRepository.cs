@@ -7,7 +7,7 @@ namespace HangmanGame
 {
     public class WordsRepository
     {
-        private readonly string[] wordsCollection =
+        public string[] wordsCollection =
         {
             "computer",
             "programmer",
@@ -22,18 +22,26 @@ namespace HangmanGame
         };
 
         readonly Random randomWord = new Random();
-        private readonly string theChosenWord = wordsCollection[randomWord.Next(0, 10)];
-        private readonly int lengthOfTheWord = theChosenWord.Length;
-        private readonly char[] secretWord = new char[lengthOfTheWord];
+        public string ChosenWord {get; private set;}
+        public char[] SecretWord {get; private set;}
 
-        public string GenerateWord()
-        {        
+
+        public WordsRepository(string chosenWord, char[] secretWord)
+        {
+            this.ChosenWord = chosenWord;
+            this.SecretWord = secretWord;
+        }
+
+        public string GenerateHiddenWord()
+        {
+            ChosenWord = wordsCollection[randomWord.Next(0, 10)];
+            int lengthOfTheWord = ChosenWord.Length;
             for (int i = 0; i < lengthOfTheWord; i++)
             {
-                secretWord[i] = '_';
+                SecretWord[i] = '_';
             }
 
-            return secretWord.ToString();
+            return SecretWord.ToString();
         }
     }   
 }
