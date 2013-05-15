@@ -5,50 +5,46 @@ using System.Text;
 
 namespace HangmanGame
 {
-    class Scoreboard
+    public class Scoreboard
     {
        private readonly int TopRecordsNumber = 5;
 
-        private QalifiesForScoreboard()
+        private List<PersonInScoreboard> players;
+
+        public List<PersonInScoreboard> Players
         {
-
-        }
-
-
-        
-
-        private AddInScoreboard()
-        {
-          PersonInScoreBoard.name = Console.ReadLine(); 
-        }
-
-        static void printboard(Dictionary<string, int> score)
-    {
-        if (score.Count == 0)
-        {
-            Console.WriteLine("Empty Scoreboard!");
-            return;
-        }
-
-        List<KeyValuePair<string, int>> key = new List<KeyValuePair<string, int>>();
-        foreach (var item in score)
-        {
-            KeyValuePair<string, int> current = new KeyValuePair<string, int>(item.Key, item.Value);
-            key.Add(current);
-        }
-
-        key.Sort(new OutComparer());
-        Console.WriteLine("Scoreboard:");
-        for (int i = 0; i < score.Count; i++)
-        {
-            Console.WriteLine("{0}. {1} --> {2} mistake", i + 1, key[i].Key, key[i].Value);
-            if (i == 4)
-            {              
-                break;
+            get
+            {
+                return this.players;
             }
         }
 
-        Console.WriteLine();
-    }
+        public Scoreboard()
+        {
+            this.players = new List<PersonInScoreboard>();
+        }
+
+        public void AddInScoreboard(string name, int personMistakes)
+        {
+         PersonInScoreboard newPlayer = new PersonInScoreboard(name,personMistakes);
+            players.Add(newPlayer);
+            players.Sort();
+        }
+
+        public bool QalifiesForScoreboard(int mistakesNumber)
+        {
+            bool result = false;
+            if (this.players.Count < TopRecordsNumber)
+            {
+                result= true;
+            }
+            else if (this.players[5].MistakeNumber > mistakesNumber)
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
     }
 }

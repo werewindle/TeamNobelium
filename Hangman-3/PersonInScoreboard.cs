@@ -5,9 +5,16 @@ using System.Text;
 
 namespace HangmanGame
 {
-    public class PersonInScoreboard: IComparable<PersonInScreboard>
+    public class PersonInScoreboard: IComparable<PersonInScoreboard>
     {
         private string name;
+        private int mistakeNumber;
+
+        public PersonInScoreboard(string name, int personMistakes)
+        {
+            this.Name = name;
+            this.MistakeNumber = personMistakes;
+        }
 
        public string Name
     {
@@ -24,7 +31,7 @@ namespace HangmanGame
             this.name = value;
         }
     }
-       private int mistakeNumber;
+
 
        public int MistakeNumber
        {
@@ -38,10 +45,9 @@ namespace HangmanGame
            }
        }
 
-        public int CompareTo(PersonInScreboard other)
+        public int CompareTo(PersonInScoreboard other)
         {
             return this.mistakeNumber.CompareTo(other.mistakeNumber);
-            throw new NotImplementedException();
         }
     }
 }
