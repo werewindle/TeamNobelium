@@ -7,8 +7,21 @@ namespace Hangman.Tests
     public class WordsRepositoryTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestGenerateHiddenWordRandomly()
         {
+            string[] wordsCollection =
+            {
+                "computer",
+                "programmer",
+                "software",
+                "debugger",
+                "compiler",
+                "developer",
+                "algorithm",
+                "array",
+                "method",
+                "variable"
+            }; 
         }
     }
 }
