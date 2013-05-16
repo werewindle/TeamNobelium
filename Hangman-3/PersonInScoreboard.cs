@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
-
-namespace HangmanGame
+﻿namespace HangmanGame
 {
+    using System;
+    using System.Linq;
+
     public class PersonInScoreboard: IComparable<PersonInScoreboard>
     {
         private string name;
@@ -15,20 +15,21 @@ namespace HangmanGame
         }
 
        public string Name
-       {
-            get
-            {
-                return this.name;
-            }
-            private set
-            {
-                if (value == null)
-                {
-                    throw new NullReferenceException("Name can not be NULL!!!");
-                }
-                this.name = value;
-            }
+    {
+        get
+        {
+            return this.name;
         }
+        private set
+        {
+            if (value == null)
+            {
+                throw new NullReferenceException("Name can not be NULL!!!");
+            }
+            this.name = value;
+        }
+    }
+
 
        public int MistakeNumber
        {
@@ -42,9 +43,9 @@ namespace HangmanGame
            }
        }
 
-       public int CompareTo(PersonInScoreboard other)
-       {
-           return this.mistakeNumber.CompareTo(other.mistakeNumber);
-       }
+        public int CompareTo(PersonInScoreboard other)
+        {
+            return this.mistakeNumber.CompareTo(other.mistakeNumber);
+        }
     }
 }

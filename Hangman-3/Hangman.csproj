@@ -44,9 +44,8 @@
   <ItemGroup>
     <Compile Include="ConsoleRender.cs" />
     <Compile Include="GameEngine.cs" />
-    <Compile Include="PlayHangman.cs" />
+    <Compile Include="Hangman.cs" />
     <Compile Include="HangmanUserInterface.cs" />
-    <Compile Include="OutComparer.cs" />
     <Compile Include="PersonInScoreboard.cs" />
     <Compile Include="Scoreboard.cs" />
     <Compile Include="WordsRepository.cs" />

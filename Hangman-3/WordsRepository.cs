@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-
-namespace HangmanGame
+﻿namespace HangmanGame
 {
+    using System;
+    using System.Linq;
+    using System.Text;
+
     public class WordsRepository
     {
-        public string[] WordsCollection =
+        public string[] wordsCollection =
         {
             "computer",
             "programmer",
@@ -24,7 +24,7 @@ namespace HangmanGame
 
         public string GenerateRandomWord()
         {
-            string randomlySelectedWord = WordsCollection[randomWord.Next(0, 10)];
+            string randomlySelectedWord = wordsCollection[randomWord.Next(0, 10)];
             return randomlySelectedWord;
         }
 

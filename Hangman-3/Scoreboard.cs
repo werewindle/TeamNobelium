@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace HangmanGame
+﻿namespace HangmanGame
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public class Scoreboard
     {
-        private readonly int topRecordsNumber = 5;
+       private readonly int TopRecordsNumber = 5;
 
-        private readonly List<PersonInScoreboard> players;
+        private List<PersonInScoreboard> players;
 
         public override string ToString()
         {
@@ -48,7 +48,7 @@ namespace HangmanGame
         public bool QalifiesForScoreboard(int mistakesNumber)
         {
             bool result = false;
-            if (this.players.Count < topRecordsNumber)
+            if (this.players.Count < TopRecordsNumber)
             {
                 result= true;
             }
@@ -59,5 +59,6 @@ namespace HangmanGame
 
             return result;
         }
+
     }
 }

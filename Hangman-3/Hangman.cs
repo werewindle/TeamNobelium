@@ -1,8 +1,9 @@
-﻿using System;
-
-namespace HangmanGame
+﻿namespace HangmanGame
 {
-    class PlayHangman
+    using System;
+    using System.Linq;
+
+    class Hangman
     {
         static void Main()
         {

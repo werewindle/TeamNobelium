@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq;
-
-namespace HangmanGame
+﻿namespace HangmanGame
 {
+    using System;
+    using System.Linq;
+
     public static class ConsoleRender
     {
         /// <summary>
-        /// prints on the console
+        /// prints string on the console
         /// </summary>
         /// <param name="inString"></param>
         public static void PrintOnConsole(string inString)

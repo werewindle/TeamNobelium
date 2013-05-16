@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace HangmanGame
+﻿namespace HangmanGame
 {
+    using System;
+    using System.Linq;
+    using System.Text;
+
     public static class HangmanUserInterface
     {
         public static string GetStartMessage(){
@@ -85,20 +84,6 @@ namespace HangmanGame
         {
             string result = "Empty Scoreboard!";
             return result;
-        }
-
-        public static string ScoreBoardString(List<KeyValuePair<string, int>> scoreboard)
-        {
-            StringBuilder result = new StringBuilder();
-            result.Append("Scoreboard:");
-            result.Append(Environment.NewLine);
-            for (int i = 0; i < scoreboard.Count; i++)
-            {
-                result.AppendFormat("{0}. {1} --> {2} mistake", i + 1, scoreboard[i].Key, scoreboard[i].Value);
-                result.Append(Environment.NewLine);
-            }
-
-            return result.ToString();
         }
     }
 }
