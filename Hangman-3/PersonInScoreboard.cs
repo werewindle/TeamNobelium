@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HangmanGame
 {
@@ -17,21 +15,20 @@ namespace HangmanGame
         }
 
        public string Name
-    {
-        get
-        {
-            return this.name;
-        }
-        private set
-        {
-            if (value == null)
+       {
+            get
             {
-                throw new NullReferenceException("Name can not be NULL!!!");
+                return this.name;
             }
-            this.name = value;
+            private set
+            {
+                if (value == null)
+                {
+                    throw new NullReferenceException("Name can not be NULL!!!");
+                }
+                this.name = value;
+            }
         }
-    }
-
 
        public int MistakeNumber
        {
@@ -45,9 +42,9 @@ namespace HangmanGame
            }
        }
 
-        public int CompareTo(PersonInScoreboard other)
-        {
-            return this.mistakeNumber.CompareTo(other.mistakeNumber);
-        }
+       public int CompareTo(PersonInScoreboard other)
+       {
+           return this.mistakeNumber.CompareTo(other.mistakeNumber);
+       }
     }
 }

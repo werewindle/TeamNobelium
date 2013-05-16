@@ -6,7 +6,7 @@ namespace HangmanGame
 {
     public class WordsRepository
     {
-        public string[] wordsCollection =
+        public string[] WordsCollection =
         {
             "computer",
             "programmer",
@@ -24,7 +24,7 @@ namespace HangmanGame
 
         public string GenerateRandomWord()
         {
-            string randomlySelectedWord = wordsCollection[randomWord.Next(0, 10)];
+            string randomlySelectedWord = WordsCollection[randomWord.Next(0, 10)];
             return randomlySelectedWord;
         }
 

@@ -7,9 +7,9 @@ namespace HangmanGame
 {
     public class Scoreboard
     {
-       private readonly int TopRecordsNumber = 5;
+        private readonly int topRecordsNumber = 5;
 
-        private List<PersonInScoreboard> players;
+        private readonly List<PersonInScoreboard> players;
 
         public override string ToString()
         {
@@ -48,7 +48,7 @@ namespace HangmanGame
         public bool QalifiesForScoreboard(int mistakesNumber)
         {
             bool result = false;
-            if (this.players.Count < TopRecordsNumber)
+            if (this.players.Count < topRecordsNumber)
             {
                 result= true;
             }
@@ -59,6 +59,5 @@ namespace HangmanGame
 
             return result;
         }
-
     }
 }

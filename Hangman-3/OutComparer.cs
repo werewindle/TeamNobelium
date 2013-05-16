@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 
-public class OutComparer : IComparer<KeyValuePair<string, int>>
+namespace HangmanGame
 {
-
-    public int Compare(KeyValuePair<string, int> x, KeyValuePair<string, int> y)
+    public class OutComparer : IComparer<KeyValuePair<string, int>>
     {
-        return x.Value.CompareTo(y.Value);
+
+        public int Compare(KeyValuePair<string, int> x, KeyValuePair<string, int> y)
+        {
+            return x.Value.CompareTo(y.Value);
+        }
     }
 }

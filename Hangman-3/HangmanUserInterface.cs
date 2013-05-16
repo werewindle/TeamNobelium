@@ -100,6 +100,5 @@ namespace HangmanGame
 
             return result.ToString();
         }
-
     }
 }

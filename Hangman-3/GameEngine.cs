@@ -5,20 +5,17 @@ using System.Text;
 
 namespace HangmanGame
 {
-    class GameEngine
+    public class GameEngine
     {
         
         private static bool isCheated = false;
         private static bool isRestartRequested = false;
 
-
-
-
         public static int mistakeCounter = 0;
         private static string theChosenWord;
-        private static StringBuilder hiddenWord = new StringBuilder();
+        private readonly static StringBuilder hiddenWord = new StringBuilder();
 
-        Scoreboard scoreBoard = new Scoreboard();
+        readonly Scoreboard scoreBoard = new Scoreboard();
 
         public void Run()
         {
@@ -228,7 +225,7 @@ namespace HangmanGame
             mistakeCounter = 0;
         }
 
-        static void printboard(Dictionary<string, int> score)
+        static void PrintBoard(Dictionary<string, int> score)
         {
             if (score.Count == 0)
             {
