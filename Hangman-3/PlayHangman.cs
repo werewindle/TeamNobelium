@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
 
-    class Hangman
+    class PlayHangman
     {
         static void Main()
         {
