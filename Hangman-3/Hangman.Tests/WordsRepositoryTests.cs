@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using HangmanGame;
 
 namespace Hangman.Tests
 {
@@ -7,8 +8,9 @@ namespace Hangman.Tests
     public class WordsRepositoryTests
     {
         [TestMethod]
-        public void TestGenerateHiddenWordRandomly()
+        public void TestGenerateRandomWord()
         {
+            Random randomWord = new Random();
             string[] wordsCollection =
             {
                 "computer",
@@ -21,7 +23,17 @@ namespace Hangman.Tests
                 "array",
                 "method",
                 "variable"
-            }; 
+            };
+            string expected = wordsCollection[randomWord.Next(0, 10)];
+            WordsRepository wordGenerator = new WordsRepository();
+            string result = wordGenerator.GenerateRandomWord();
+            Assert.AreEqual(expected, result);            
+        }
+
+        [TestMethod]
+        public void TestGenerateHiddenWord()
+        {
+          
         }
     }
 }
