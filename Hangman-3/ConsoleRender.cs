@@ -11,7 +11,7 @@
         /// <param name="inString"></param>
         public static void PrintOnConsole(string inString)
         {
-            Console.WriteLine(inString);
+            Console.Write(inString);
         }
     }
 }

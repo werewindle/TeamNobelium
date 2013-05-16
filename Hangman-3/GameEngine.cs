@@ -6,7 +6,7 @@
 
     public class GameEngine
     {
-        
+
         private bool isCheated = false;
         private bool isRestartRequested = false;
 
@@ -22,6 +22,7 @@
             {
                 WordsRepository wordGenerator = new WordsRepository();
                 this.theChosenWord = wordGenerator.GenerateRandomWord();
+                this.hiddenWord.Clear();
                 this.hiddenWord.Append(wordGenerator.GenerateHiddenWord(this.theChosenWord));
 
                 ConsoleRender.PrintOnConsole(HangmanUserInterface.GetStartMessage());
@@ -42,16 +43,14 @@
             }
             while (true);
         }
-  
+
         private void WordGuessed()
         {
             if (!this.isCheated)
             {
-                Console.WriteLine("You won with {0} mistakes.", this.mistakeCounter);
-
+                ConsoleRender.PrintOnConsole(HangmanUserInterface.WonMessage(this.mistakeCounter));
                 PrintTheWord();
 
-                
                 scoreBoard.AddInScoreboard(RequestName(), this.mistakeCounter);
                 ConsoleRender.PrintOnConsole(scoreBoard.ToString());
             }
@@ -64,7 +63,7 @@
 
         private string RequestName()
         {
-            Console.Write("Please enter your name for the top scoreboard: ");
+            ConsoleRender.PrintOnConsole(HangmanUserInterface.ScoreboardMessage());
             string name = Console.ReadLine();
             return name;
         }
@@ -74,7 +73,7 @@
             do
             {
                 PrintTheWord();
-                Console.Write("Enter your guess: ");
+                ConsoleRender.PrintOnConsole(HangmanUserInterface.GuessMessage());
                 string enteredString = Console.ReadLine();
                 GetCommand(enteredString);
                 if (this.isRestartRequested)
@@ -108,14 +107,14 @@
                     break;
             }
         }
-  
+
         private void CheckCommandOrLetter(string command)
         {
             bool isOneSymbol = (command.Length == 1);
-                      
+
             if (isOneSymbol && char.IsLetter(command, 0))
             {
-                ProcessLetter(command);
+                ConsoleRender.PrintOnConsole(ProcessLetter(command));
             }
             else
             {
@@ -150,7 +149,7 @@
             bool isLetterInTheWord = false;
             int letterKnown = 0;
             char enteredSymbol = char.Parse(letter);
-            
+
             for (int i = 0; i < this.hiddenWord.Length; i++)
             {
                 if (this.theChosenWord[i] == enteredSymbol)
@@ -158,7 +157,7 @@
                     this.hiddenWord[i] = enteredSymbol;
                     letterKnown++;
                     isLetterInTheWord = true;
-                    
+
                 }
             }
 
@@ -176,7 +175,7 @@
             return result;
         }
 
-        
+
 
         private void PrintTheWord()
         {
@@ -188,7 +187,7 @@
             Console.WriteLine();
         }
 
-        
+
 
         private bool IsWordKnown()
         {
