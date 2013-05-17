@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="PersonsInScoreboardTests.cs" />
     <Compile Include="ScoreboardTests.cs" />
+    <Compile Include="HangmanUserInterfaceTests.cs" />
     <Compile Include="WordsRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
