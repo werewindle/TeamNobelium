@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
 
-    public class PersonInScoreboard: IComparable<PersonInScoreboard>
+    public class PersonInScoreboard : IComparable<PersonInScoreboard>
     {
         private string name;
         private int mistakeNumber;
@@ -14,34 +14,39 @@
             this.MistakeNumber = personMistakes;
         }
 
-       public string Name
-    {
-        get
+        public string Name
         {
-            return this.name;
-        }
-        private set
-        {
-            if (value == null)
+            get
             {
-                throw new NullReferenceException("Name can not be NULL!!!");
+                return this.name;
             }
-            this.name = value;
+            private set
+            {
+                if (value == null)
+                {
+                    throw new NullReferenceException("Name can not be NULL!!!");
+                }
+                this.name = value;
+            }
         }
-    }
 
 
-       public int MistakeNumber
-       {
-           get
-           {
-               return this.mistakeNumber;
-           }
-           private set
-           {
-               this.mistakeNumber = value;
-           }
-       }
+        public int MistakeNumber
+        {
+            get
+            {
+                return this.mistakeNumber;
+            }
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("Mistake number can not be less than zero");
+                }
+
+                this.mistakeNumber = value;
+            }
+        }
 
         public int CompareTo(PersonInScoreboard other)
         {
