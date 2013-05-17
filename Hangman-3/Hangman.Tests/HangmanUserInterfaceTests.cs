@@ -9,9 +9,8 @@ namespace Hangman.Tests
     public class HangmanUserInterfaceTests
     {
         [TestMethod]
-        public void TestGenerateMessageMistakesNumber()
+        public void TestWonMessage()
         {
-            //string message = HangmanUserInterface.GuessMessage();
             int mistakesNumber = 3;
             string expected = string.Format("You won with {0} mistakes.\n", mistakesNumber);
             string result = HangmanUserInterface.WonMessage(mistakesNumber);
@@ -19,7 +18,7 @@ namespace Hangman.Tests
         }
         
         [TestMethod]
-        public void TestGenerateMessageWonWithCheating()
+        public void TestWonWithCheatingMessage()
         {            
             int mistakesNumber = 3;
             string expected = string.Format("You won with {0} mistakes but you have cheated. You are not allowed\n to enter into the scoreboard.\n", mistakesNumber);
@@ -28,7 +27,7 @@ namespace Hangman.Tests
         }
 
         /*[TestMethod]
-        public void TestGenerateMessageSecretWord()
+        public void TestSecretWordMessage()
         {
             StringBuilder expected = new StringBuilder();
             string secretWord = "develepor";
@@ -42,6 +41,7 @@ namespace Hangman.Tests
             string result = HangmanUserInterface.SecretWordMessage(secretWord);
             Assert.AreEqual(expected,result);
         }*/
+
         [TestMethod]
         public void TestWrongLetterMessage()
         {            
