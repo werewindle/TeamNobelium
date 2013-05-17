@@ -31,7 +31,7 @@ namespace Hangman.Tests
         }
 
         [TestMethod]
-        public void CompareTestExpecteZero()
+        public void CompareTestExpectedZero()
         {
             PersonInScoreboard person = new PersonInScoreboard("Genadi", 5);
             PersonInScoreboard otherPerson = new PersonInScoreboard("Genadi", 5);
@@ -42,7 +42,7 @@ namespace Hangman.Tests
         }
 
         [TestMethod]
-        public void CompareTestExpecteOne()
+        public void CompareTestExpectedOne()
         {
             PersonInScoreboard person = new PersonInScoreboard("Genadi", 5);
             PersonInScoreboard otherPerson = new PersonInScoreboard("Genadi",1);
@@ -53,7 +53,7 @@ namespace Hangman.Tests
         }
 
         [TestMethod]
-        public void CompareTestExpecteMinusOne()
+        public void CompareTestExpectedMinusOne()
         {
             PersonInScoreboard person = new PersonInScoreboard("Genadi", 1);
             PersonInScoreboard otherPerson = new PersonInScoreboard("Genadi", 5);
