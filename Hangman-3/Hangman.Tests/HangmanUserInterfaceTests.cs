@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HangmanGame;
+using System.Text;
 
 namespace Hangman.Tests
 {
@@ -29,10 +30,34 @@ namespace Hangman.Tests
         /*[TestMethod]
         public void TestGenerateMessageSecretWord()
         {
-            string secretWord = "developer";
-            string expected = string.Format("The secret word is: {0}",secretWord);
-            string result = string.Format(HangmanUserInterface.SecretWordMessage(secretWord));
-            Assert.AreEqual(expected, result);
+            StringBuilder expected = new StringBuilder();
+            string secretWord = "develepor";
+            expected.Append("The secret word is: ");
+            for (int i = 0; i < secretWord.Length; i++)
+            {
+                expected.AppendFormat("{0} ", secretWord[i]);
+            }
+            expected.ToString();
+                  
+            string result = HangmanUserInterface.SecretWordMessage(secretWord);
+            Assert.AreEqual(expected,result);
         }*/
+        [TestMethod]
+        public void TestWrongLetterMessage()
+        {            
+            string letterer = "a";
+            string expected = string.Format("Sorry! There are no unrevealed letters \"{0}\".\n", letterer);
+            string result = HangmanUserInterface.WrongLetterMessage(letterer);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void TestLettersKnownMessage()
+        {            
+            int numberOfknownLetters = 2;
+            string expected = string.Format("Good job! You revealed {0} letters.\n", numberOfknownLetters);
+            string result = HangmanUserInterface.LettersKnownMessage(numberOfknownLetters);
+            Assert.AreEqual(expected, result);
+        }
     }
 }
