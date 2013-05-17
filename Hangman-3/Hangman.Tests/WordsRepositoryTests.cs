@@ -48,19 +48,18 @@ namespace Hangman.Tests
                 "method",
                 "variable"
             };
-            string rndWord = wordsCollection[randomWord.Next(0, 10)];           
+            string rndWord = wordsCollection[randomWord.Next(0, 10)];
+            WordsRepository wordGenerator = new WordsRepository();
+            string result = wordGenerator.GenerateHiddenWord(rndWord);
+
             StringBuilder expected = new StringBuilder();
             expected.Append(rndWord);
             for (int i = 0; i < rndWord.Length; i++)
             {
                 expected[i] = '_';
             }
-            rndWord = expected.ToString();
-
-            WordsRepository wordGenerator = new WordsRepository();
-            StringBuilder result = new StringBuilder();
-            result.Append(wordGenerator.GenerateHiddenWord(rndWord));
-            Assert.AreEqual(expected, result); 
+            rndWord = expected.ToString();        
+            Assert.AreEqual(rndWord, result); 
         }
     }
 }
