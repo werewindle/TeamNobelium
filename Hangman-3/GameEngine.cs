@@ -175,8 +175,6 @@
             return result;
         }
 
-
-
         private void PrintTheWord()
         {
             Console.Write("The secret word is: ");
@@ -186,8 +184,6 @@
             }
             Console.WriteLine();
         }
-
-
 
         private bool IsWordKnown()
         {
