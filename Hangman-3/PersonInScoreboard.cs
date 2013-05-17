@@ -30,7 +30,6 @@
             }
         }
 
-
         public int MistakeNumber
         {
             get

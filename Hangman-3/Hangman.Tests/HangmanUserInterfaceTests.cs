@@ -26,21 +26,14 @@ namespace Hangman.Tests
             Assert.AreEqual(expected, result);
         }
 
-        /*[TestMethod]
+        [TestMethod]
         public void TestSecretWordMessage()
         {
-            StringBuilder expected = new StringBuilder();
-            string secretWord = "develepor";
-            expected.Append("The secret word is: ");
-            for (int i = 0; i < secretWord.Length; i++)
-            {
-                expected.AppendFormat("{0} ", secretWord[i]);
-            }
-            expected.ToString();
-                  
+            string expected = "The secret word is: d e v e l o p e r ";
+            string secretWord = "developer";
             string result = HangmanUserInterface.SecretWordMessage(secretWord);
-            Assert.AreEqual(expected,result);
-        }*/
+            Assert.AreEqual(expected, result);
+        }
 
         [TestMethod]
         public void TestWrongLetterMessage()
