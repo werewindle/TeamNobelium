@@ -7,7 +7,7 @@
 
     public class Scoreboard
     {
-        private readonly int TopRecordsNumber = 5;
+        private readonly int topRecordsNumber = 5;
 
         private List<PersonInScoreboard> players;
 
@@ -40,9 +40,9 @@
             players.Add(newPlayer);
             players.Sort();
 
-            if (players.Count>TopRecordsNumber)
+            if (players.Count>topRecordsNumber)
             {
-                players.RemoveAt(TopRecordsNumber);
+                players.RemoveAt(topRecordsNumber);
             }
         }
 
@@ -54,11 +54,11 @@
             }
 
             bool result = false;
-            if (this.players.Count < TopRecordsNumber)
+            if (this.players.Count < topRecordsNumber)
             {
                 result = true;
             }
-            else if (this.players[4].MistakeNumber > mistakesNumber)
+            else if (this.players[topRecordsNumber - 1].MistakeNumber > mistakesNumber)
             {
                 result = true;
             }
